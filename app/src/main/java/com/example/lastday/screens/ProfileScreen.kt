@@ -23,6 +23,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -141,6 +143,11 @@ fun ProfileSection(
             Spacer(modifier = Modifier.width(16.dp))
             StatSection(modifier = Modifier.weight(7f))
         }
+        ProfileDescription(
+            description = "10 years of coding experience\n" +
+                    "Want me to make your app? Send me an email!\n" +
+                    "Subscribe to my YouTube channel!"
+        )
     }
 }
             @Composable
@@ -198,6 +205,26 @@ fun PostTabView(
                 )
             }
         }
+    }
+}
+
+@Composable
+fun ProfileDescription(
+    description: String,
+) {
+    val letterSpacing = 0.5.sp
+    val lineHeight = 20.sp
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp)
+    ) {
+        Text(
+            text = description,
+            letterSpacing = letterSpacing,
+            lineHeight = lineHeight
+        )
+
     }
 }
 
