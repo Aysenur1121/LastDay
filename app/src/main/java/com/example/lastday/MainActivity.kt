@@ -48,6 +48,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.lastday.navigation.AppNavigation
 
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +64,9 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+
+
 
 data class Post(val author: String, val body: String)
 
