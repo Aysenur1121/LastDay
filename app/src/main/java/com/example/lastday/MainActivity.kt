@@ -1,6 +1,6 @@
 package com.example.lastday
 
-import android.media.Image
+import LoginScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -26,47 +26,42 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.lastday.ui.theme.LastDayTheme
 import android.content.res.Configuration
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.contentColorFor
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.colorspace.WhitePoint
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
-import androidx.core.content.contentValuesOf
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import com.example.lastday.navigation.AppNavigation
 
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val controller= rememberNavController()
-            LastDayTheme{
-                AppNavigation(navController = controller as NavHostController
-                )
-                /*Surface(modifier = Modifier.fillMaxSize()){
-                    PostCard(Post("Android", "Jetpack Compose"))
-                } */
+            LastDayTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                ) {
+                    LoginScreen()
+                }
             }
         }
     }
 }
 
-
-
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    LastDayTheme {
+        LoginScreen()
+    }
+}
 
 data class Post(val author: String, val body: String)
 
@@ -168,6 +163,8 @@ fun PreviewPostCard(){
 
 }
 //OldEnd
+
+
 
 
 

@@ -1,5 +1,6 @@
 package com.example.lastday.navigation
 
+import LoginScreen
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -30,6 +31,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.lastday.Routes
 import com.example.lastday.screens.HomeScreen
 import com.example.lastday.screens.ProfileScreen
 import com.example.lastday.screens.SavedScreen
@@ -37,7 +39,7 @@ import com.example.lastday.screens.SavedScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppNavigation(navController: NavHostController){
+fun AppNavigation(navController: NavHostController) {
 
 
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
@@ -77,7 +79,7 @@ fun AppNavigation(navController: NavHostController){
 
 
         floatingActionButton = {
-            FloatingActionButton(onClick = {  }) {
+            FloatingActionButton(onClick = { }) {
                 Icon(Icons.Default.Add, contentDescription = "Add")
             }
         },
@@ -86,12 +88,12 @@ fun AppNavigation(navController: NavHostController){
                 val navBackStackEntry: NavBackStackEntry? by navController.currentBackStackEntryAsState()
                 val currentDestination: NavDestination? = navBackStackEntry?.destination
 
-                listOfNavItem.forEach { navItem : NavItem->
+                listOfNavItem.forEach { navItem: NavItem ->
                     NavigationBarItem(
                         selected = currentDestination?.hierarchy?.any { it.route == navItem.route } == true,
                         onClick = {
-                            navController.navigate(navItem.route){
-                                popUpTo(navController.graph.findStartDestination().id){
+                            navController.navigate(navItem.route) {
+                                popUpTo(navController.graph.findStartDestination().id) {
                                     saveState = true
                                 }
                                 launchSingleTop = true
@@ -101,7 +103,8 @@ fun AppNavigation(navController: NavHostController){
                         icon = {
                             Icon(
                                 imageVector = navItem.icon,
-                                contentDescription = null )
+                                contentDescription = null
+                            )
                         },
                         label = {
                             Text(text = navItem.label)
@@ -115,22 +118,26 @@ fun AppNavigation(navController: NavHostController){
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination =  Screens.HomeScreen.name,
+            startDestination = Screens.HomeScreen.name,
             modifier = Modifier
                 .padding(innerPadding)
-        ){
-            composable(route = Screens.HomeScreen.name){
+        ) {
+            composable(route = Screens.HomeScreen.name) {
                 HomeScreen()
             }
-            composable(route = Screens.ProfileScreen.name){
+            composable(route = Screens.ProfileScreen.name) {
                 ProfileScreen(
                     "Ara Deniz Bakırcı", androidx.compose.ui.Modifier
                         .padding(10.dp)
                 )
             }
-            composable(route = Screens.SavedScreen.name){
+            composable(route = Screens.SavedScreen.name) {
                 SavedScreen()
             }
-        } }
+
+
+        }
+    }
 }
+
 

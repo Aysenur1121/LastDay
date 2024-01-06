@@ -27,7 +27,7 @@ val listOfNavItem: List<NavItem> = listOf(
     ),
     NavItem(
         label = "Saved",
-        icon = Icons.Default.List,  // saved için icon
+        icon = Icons.Default.List,
         route = Screens.SavedScreen.name
     )
 
