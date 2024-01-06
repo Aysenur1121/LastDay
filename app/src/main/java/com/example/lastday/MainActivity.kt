@@ -1,6 +1,5 @@
 package com.example.lastday
 
-import LoginScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -38,6 +37,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
+import com.example.lastday.navigation.AppNavigation
+import com.example.lastday.navigation.SayfaGecisleri
+import com.example.lastday.screens.LoginPage
 
 
 class MainActivity : ComponentActivity() {
@@ -48,7 +51,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                 ) {
-                    LoginScreen()
+                    SayfaGecisleri()
                 }
             }
         }
@@ -59,7 +62,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     LastDayTheme {
-        LoginScreen()
+        SayfaGecisleri()
     }
 }
 
@@ -163,6 +166,8 @@ fun PreviewPostCard(){
 
 }
 //OldEnd
+
+
 
 
 

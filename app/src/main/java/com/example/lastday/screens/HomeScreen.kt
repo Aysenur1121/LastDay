@@ -24,11 +24,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.lastday.PostSamples
+import androidx.navigation.NavHostController
 import com.example.lastday.R
 
 @Composable
-fun HomeScreen(){
+fun HomeScreen(navController: NavHostController) {
     Box(modifier = Modifier
         .fillMaxSize(),
         contentAlignment = Alignment.Center){

@@ -26,19 +26,16 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.lastday.navigation.Screens
-import com.example.lastday.ui.theme.Purple40
-
+import androidx.compose.ui.tooling.preview.Preview
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginPage(navController: NavHostController) {
+fun RegisterScreen(navController: NavHostController) {
     Box(modifier = Modifier.fillMaxSize()) {
 
     }
@@ -51,7 +48,7 @@ fun LoginPage(navController: NavHostController) {
         val username = remember { mutableStateOf(TextFieldValue()) }
         val password = remember { mutableStateOf(TextFieldValue()) }
 
-        Text(text = "Login", style = TextStyle(fontSize = 40.sp, fontFamily = FontFamily.Cursive))
+        Text(text = "Register", style = TextStyle(fontSize = 40.sp, fontFamily = FontFamily.Cursive))
 
         Spacer(modifier = Modifier.height(20.dp))
         TextField(
@@ -70,27 +67,22 @@ fun LoginPage(navController: NavHostController) {
         Spacer(modifier = Modifier.height(20.dp))
         Box(modifier = Modifier.padding(40.dp, 0.dp, 40.dp, 0.dp)) {
             Button(
-                onClick = {navController.navigate("home_sayfa") {
-                    }
-                },
+                onClick = {navController.popBackStack()},
                 shape = RoundedCornerShape(50.dp),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp)
             ) {
-                Text(text = "Login")
+                Text(text = "Sign Up")
             }
         }
 
-
-        Spacer(modifier = Modifier.height(20.dp))
-        ClickableText(
-            text = AnnotatedString("Kayit ol"),
-            onClick = {navController.navigate("ikinci_sayfa")},
-            style = TextStyle(
-                fontSize = 14.sp,
-                fontFamily = FontFamily.Default
-            )
-        )
     }
+}
+
+
+
+
+fun text(text: String) {
+
 }

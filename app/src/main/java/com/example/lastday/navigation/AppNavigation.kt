@@ -1,6 +1,5 @@
 package com.example.lastday.navigation
 
-import LoginScreen
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -31,9 +30,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.lastday.Routes
+import androidx.navigation.compose.rememberNavController
 import com.example.lastday.screens.HomeScreen
+import com.example.lastday.screens.LoginPage
 import com.example.lastday.screens.ProfileScreen
+import com.example.lastday.screens.RegisterScreen
 import com.example.lastday.screens.SavedScreen
 
 
@@ -123,7 +124,7 @@ fun AppNavigation(navController: NavHostController) {
                 .padding(innerPadding)
         ) {
             composable(route = Screens.HomeScreen.name) {
-                HomeScreen()
+                HomeScreen(navController)
             }
             composable(route = Screens.ProfileScreen.name) {
                 ProfileScreen(
@@ -138,6 +139,24 @@ fun AppNavigation(navController: NavHostController) {
 
         }
     }
+}
+@Composable
+fun SayfaGecisleri(){
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "ilk_sayfa"){
+        composable(route="ilk_sayfa"){
+            LoginPage(navController)
+        }
+        composable(route="ikinci_sayfa"){
+            RegisterScreen(navController)
+        }
+        composable(route="home_sayfa"){
+            HomeScreen(navController)
+        }
+    }
+
+
+
 }
 
 
