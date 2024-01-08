@@ -69,4 +69,19 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")*/
 
     implementation("androidx.navigation:navigation-compose:2.7.3")
+
+    //mockApı kullanabilmek için retrofit kullanılacak, alttaki iki satır bunun için eklendi
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //viewModel dependency si eklendi
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0-alpha05")
+
+    implementation ("androidx.compose.runtime:runtime:1.0.0")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-livedata:2.x.x")
+
+    implementation ("androidx.compose.runtime:runtime-livedata:1.x.x")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.x.x")
+
 }
