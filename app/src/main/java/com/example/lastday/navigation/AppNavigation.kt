@@ -30,117 +30,120 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import com.example.lastday.screens.HomeScreen
-import com.example.lastday.screens.LoginPage
 import com.example.lastday.screens.ProfileScreen
-import com.example.lastday.screens.RegisterScreen
 import com.example.lastday.screens.SavedScreen
+import androidx.compose.runtime.CompositionLocalProvider
+import com.example.lastday.VeriTransferKatmanı.PostViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppNavigation(navController: NavHostController) {
+fun AppNavigation(navController: NavHostController, postViewModel: PostViewModel) {
 
 
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
-    Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+    CompositionLocalProvider(navControllerAmbient provides navController) {
 
-        topBar = {
-            CenterAlignedTopAppBar(
+        Scaffold(
+            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
 
-                title = {
-                    Text(
-                        "Reported App",
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { /* do something */ }) {
-                        Icon(
-                            imageVector = Icons.Filled.Settings,
-                            contentDescription = "Localized description"
+            topBar = {
+                CenterAlignedTopAppBar(
+
+                    title = {
+                        Text(
+                            "Reported App",
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
                         )
-                    }
-                },
-                actions = {
-                    IconButton(onClick = { /* do something */ }) {
-                        Icon(
-                            imageVector = Icons.Filled.ExitToApp,
-                            contentDescription = "Localized description"
-                        )
-                    }
-                },
-                scrollBehavior = scrollBehavior,
-            )
-        },
-
-
-        floatingActionButton = {
-            FloatingActionButton(onClick = { }) {
-                Icon(Icons.Default.Add, contentDescription = "Add")
-            }
-        },
-        bottomBar = {
-            NavigationBar {
-                val navBackStackEntry: NavBackStackEntry? by navController.currentBackStackEntryAsState()
-                val currentDestination: NavDestination? = navBackStackEntry?.destination
-
-                listOfNavItem.forEach { navItem: NavItem ->
-                    NavigationBarItem(
-                        selected = currentDestination?.hierarchy?.any { it.route == navItem.route } == true,
-                        onClick = {
-                            navController.navigate(navItem.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        },
-                        icon = {
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = { /* do something */ }) {
                             Icon(
-                                imageVector = navItem.icon,
-                                contentDescription = null
+                                imageVector = Icons.Filled.Settings,
+                                contentDescription = "Localized description"
                             )
-                        },
-                        label = {
-                            Text(text = navItem.label)
-                        })
-
-                }
-            }
-
-        }
-
-    ) { innerPadding ->
-        NavHost(
-            navController = navController,
-            startDestination = Screens.HomeScreen.name,
-            modifier = Modifier
-                .padding(innerPadding)
-        ) {
-            composable(route = Screens.HomeScreen.name) {
-                HomeScreen(navController)
-            }
-            composable(route = Screens.ProfileScreen.name) {
-                ProfileScreen(
-                    "Ara Deniz Bakırcı", androidx.compose.ui.Modifier
-                        .padding(10.dp)
+                        }
+                    },
+                    actions = {
+                        IconButton(onClick = { /* do something */ }) {
+                            Icon(
+                                imageVector = Icons.Filled.ExitToApp,
+                                contentDescription = "Localized description"
+                            )
+                        }
+                    },
+                    scrollBehavior = scrollBehavior,
                 )
-            }
-            composable(route = Screens.SavedScreen.name) {
-                SavedScreen()
-            }
+            },
 
 
+            floatingActionButton = {
+                FloatingActionButton(onClick = { }) {
+                    Icon(Icons.Default.Add, contentDescription = "Add")
+                }
+            },
+            bottomBar = {
+                NavigationBar {
+                    val navBackStackEntry: NavBackStackEntry? by navController.currentBackStackEntryAsState()
+                    val currentDestination: NavDestination? = navBackStackEntry?.destination
+
+                    listOfNavItem.forEach { navItem: NavItem ->
+                        NavigationBarItem(
+                            selected = currentDestination?.hierarchy?.any { it.route == navItem.route } == true,
+                            onClick = {
+                                navController.navigate(navItem.route) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            },
+                            icon = {
+                                Icon(
+                                    imageVector = navItem.icon,
+                                    contentDescription = null
+                                )
+                            },
+                            label = {
+                                Text(text = navItem.label)
+                            })
+
+                    }
+                }
+
+            }
+
+        ) { innerPadding ->
+            NavHost(
+                navController = navController,
+                startDestination = Screens.HomeScreen.name,
+                modifier = Modifier.padding(innerPadding)
+            ) {
+                composable(route = Screens.HomeScreen.name) {
+                    HomeScreen(postViewModel = postViewModel)
+                }
+                composable(route = Screens.ProfileScreen.name) {
+                    ProfileScreen(
+                        "Ara Deniz Bakırcı", androidx.compose.ui.Modifier
+                            .padding(10.dp)
+                    )
+                }
+                composable(route = Screens.SavedScreen.name) {
+                    SavedScreen()
+                }
+
+
+            }
         }
     }
+
 }
-@Composable
+
+/*@Composable
 fun SayfaGecisleri(){
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "ilk_sayfa"){
@@ -153,10 +156,10 @@ fun SayfaGecisleri(){
         composable(route="home_sayfa"){
             HomeScreen(navController)
         }
-    }
+    }}*/
 
 
 
-}
+
 
 
